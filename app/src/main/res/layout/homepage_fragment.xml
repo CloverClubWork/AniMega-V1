@@ -1,0 +1,118 @@
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+	<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+		android:id="@+id/swiperefreshlayout1"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical">
+		<ScrollView
+			android:id="@+id/vscroll1"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent">
+			<LinearLayout
+				android:id="@+id/linear1"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:orientation="vertical">
+				<LinearLayout
+					android:id="@+id/linear2"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="5dp"
+					android:orientation="vertical">
+					<TextView
+						android:id="@+id/textview1"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:paddingLeft="5dp"
+						android:paddingTop="8dp"
+						android:paddingRight="8dp"
+						android:paddingBottom="5dp"
+						android:text="New Released"
+						android:textSize="16sp"
+						android:textStyle="bold"
+						android:textColor="#FFFFFF" />
+					<com.github.ybq.android.spinkit.SpinKitView
+						android:id="@+id/loader1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:gravity="center_horizontal|center_vertical"
+						android:orientation="horizontal"
+						style="@style/SpinKitView.Large.ThreeBounce"
+						app:SpinKit_Color="@color/colorPrimary" />
+					<androidx.recyclerview.widget.RecyclerView
+						android:id="@+id/recyclerview1"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content" />
+				</LinearLayout>
+				<LinearLayout
+					android:id="@+id/linear3"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="5dp"
+					android:orientation="vertical">
+					<TextView
+						android:id="@+id/textview2"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:paddingLeft="5dp"
+						android:paddingTop="8dp"
+						android:paddingRight="8dp"
+						android:paddingBottom="5dp"
+						android:text="Top Airing"
+						android:textSize="16sp"
+						android:textStyle="bold"
+						android:textColor="#FFFFFF" />
+					<com.github.ybq.android.spinkit.SpinKitView
+						android:id="@+id/loader2"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:gravity="center_horizontal|center_vertical"
+						android:orientation="horizontal"
+						style="@style/SpinKitView.Large.ThreeBounce"
+						app:SpinKit_Color="@color/colorPrimary" />
+					<androidx.recyclerview.widget.RecyclerView
+						android:id="@+id/recyclerview2"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content" />
+				</LinearLayout>
+				<LinearLayout
+					android:id="@+id/linear4"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:padding="5dp"
+					android:orientation="vertical">
+					<TextView
+						android:id="@+id/textview3"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:paddingLeft="5dp"
+						android:paddingTop="8dp"
+						android:paddingRight="8dp"
+						android:paddingBottom="5dp"
+						android:text="Popular"
+						android:textSize="16sp"
+						android:textStyle="bold"
+						android:textColor="#FFFFFF" />
+					<com.github.ybq.android.spinkit.SpinKitView
+						android:id="@+id/loader3"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:gravity="center_horizontal|center_vertical"
+						android:orientation="horizontal"
+						style="@style/SpinKitView.Large.ThreeBounce"
+						app:SpinKit_Color="@color/colorPrimary" />
+					<androidx.recyclerview.widget.RecyclerView
+						android:id="@+id/recyclerview3"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content" />
+				</LinearLayout>
+			</LinearLayout>
+		</ScrollView>
+	</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>
