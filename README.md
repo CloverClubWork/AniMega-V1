@@ -2,6 +2,8 @@
 
 AniMega is an Ad-Free android application for streaming Anime Movies & Tv Series for free. It uses gogoanime provider to scrapped data and play videos.
 
+![GitHub release (by tag)](https://img.shields.io/github/downloads/CloverClubWork/AniMega-V1/v0.0.5/total?style=for-the-badge&logo=github&cacheSeconds=3600&link=https%3A%2F%2Fgithub.com%2FCloverClubWork%2FAniMega-V1%2Freleases%2Fdownload%2Fv0.0.5%2FAniMegaV1_beta.apk)
+
 ## Screenshot
 |Image 1|Image 2|Image 3|Image 4|
 |---|---|---|---|
@@ -18,7 +20,7 @@ Quality choices not support on this version. If you want to stream with highest 
 - [x] Powerful Player
 - [x] Reliable Search Engine
 
-` More functions and features would be available on future development '
+` More functions and features would be available on future development `
 
 ## Credits
 - [x] [Amvstr.me](https://amvstr.me/)
@@ -27,3 +29,6 @@ Quality choices not support on this version. If you want to stream with highest 
 ## Support Us
 - [SociaBuzz](https://sociabuzz.com/cloverclub_03/tribe)
 - [Ko-Fi](https://ko-fi.com/skyfreak)
+
+## Download
+[Download v0.0.5_beta](https://github.com/CloverClubWork/AniMega-V1/releases/download/v0.0.5/AniMegaV1_beta.apk)
