@@ -2,7 +2,9 @@ package com.animega;
 
 import android.animation.*;
 import android.app.*;
+import android.app.Activity;
 import android.content.*;
+import android.content.SharedPreferences;
 import android.content.res.*;
 import android.graphics.*;
 import android.graphics.Typeface;
@@ -84,15 +86,15 @@ public class PlayerActivity extends AppCompatActivity {
 	private ImageView rewindIcon;
 	private ImageView playIcon;
 	private ImageView forwardIcon;
-	private Button button1;
+	private Button skipTimeBtn;
 	private TextView currentVideoTime;
 	private SeekBar seekbar1;
 	private TextView videoTimeDuration;
-	private ImageView imageview2;
 	
 	private RequestNetwork requestServerVideo;
 	private RequestNetwork.RequestListener _requestServerVideo_request_listener;
 	private TimerTask durationTimer;
+	private SharedPreferences skipTime;
 	
 	@Override
 	protected void onCreate(Bundle _savedInstanceState) {
@@ -124,12 +126,12 @@ public class PlayerActivity extends AppCompatActivity {
 		rewindIcon = findViewById(R.id.rewindIcon);
 		playIcon = findViewById(R.id.playIcon);
 		forwardIcon = findViewById(R.id.forwardIcon);
-		button1 = findViewById(R.id.button1);
+		skipTimeBtn = findViewById(R.id.skipTimeBtn);
 		currentVideoTime = findViewById(R.id.currentVideoTime);
 		seekbar1 = findViewById(R.id.seekbar1);
 		videoTimeDuration = findViewById(R.id.videoTimeDuration);
-		imageview2 = findViewById(R.id.imageview2);
 		requestServerVideo = new RequestNetwork(this);
+		skipTime = getSharedPreferences("skipTime", Activity.MODE_PRIVATE);
 		
 		linear_player.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -220,7 +222,7 @@ public class PlayerActivity extends AppCompatActivity {
 			}
 		});
 		
-		button1.setOnClickListener(new View.OnClickListener() {
+		skipTimeBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
 				videoView.seekTo((int) videoView.getCurrentPosition() + 85000);
@@ -245,13 +247,6 @@ public class PlayerActivity extends AppCompatActivity {
 			@Override
 			public void onStopTrackingTouch(SeekBar _param2) {
 				
-			}
-		});
-		
-		imageview2.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View _view) {
-				_openChrome(downloadUri);
 			}
 		});
 		
@@ -302,10 +297,10 @@ public class PlayerActivity extends AppCompatActivity {
 	private void initializeLogic() {
 		videoIsCompleted = false;
 		textview1.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/comforta_bold.ttf"), 1);
-		button1.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/comforta_bold.ttf"), 1);
+		skipTimeBtn.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/comforta_bold.ttf"), 1);
 		currentVideoTime.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/comfortaa_medium.ttf"), 0);
 		videoTimeDuration.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/comfortaa_medium.ttf"), 0);
-		button1.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFFF5722));
+		skipTimeBtn.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFFFF5722));
 		linear_backbtn.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)100, 0xCC212121));
 		rewindBtn.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)100, Color.TRANSPARENT));
 		playBtn.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)100, Color.TRANSPARENT));
@@ -326,6 +321,14 @@ public class PlayerActivity extends AppCompatActivity {
 		
 		spinner1.setAdapter(new Spinner1Adapter(qualityListMap));
 		spinner1.setSelection((int)(0));
+		if (skipTime.contains("skipTime")) {
+			if (skipTime.getString("skipTime", "").equals("show")) {
+				skipTimeBtn.setVisibility(View.VISIBLE);
+			}
+			else {
+				skipTimeBtn.setVisibility(View.INVISIBLE);
+			}
+		}
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT);
 		
 		videoView = new VideoView(PlayerActivity.this);

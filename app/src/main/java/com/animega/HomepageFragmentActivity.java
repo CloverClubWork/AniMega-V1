@@ -119,10 +119,12 @@ public class HomepageFragmentActivity extends Fragment {
 			public void onRefresh() {
 				loader1.setVisibility(View.VISIBLE);
 				loader2.setVisibility(View.VISIBLE);
+				loader3.setVisibility(View.VISIBLE);
 				swiperefreshlayout1.setRefreshing(false);
 				if (SketchwareUtil.isConnected(getContext().getApplicationContext())) {
-					requestData.startRequestNetwork(RequestNetworkController.GET, "https://www.novelpubfile.xyz/anime/gogoanime/recent-episodes?page=1&type=1", "a", _requestData_request_listener);
-					requestTopAiring.startRequestNetwork(RequestNetworkController.GET, "https://www.novelpubfile.xyz/anime/gogoanime/top-airing?page=1", "a", _requestTopAiring_request_listener);
+					requestData.startRequestNetwork(RequestNetworkController.GET, "https://api-amvstrm.nyt92.eu.org/api/v1/recentepisode/all", "a", _requestData_request_listener);
+					requestTopAiring.startRequestNetwork(RequestNetworkController.GET, "https://api-amvstrm.nyt92.eu.org/api/v1/topair", "a", _requestTopAiring_request_listener);
+					requestPopular.startRequestNetwork(RequestNetworkController.GET, "https://api-amvstrm.nyt92.eu.org/api/v1/popular/1", "a", _requestPopular_request_listener);
 				}
 				else {
 					swiperefreshlayout1.setRefreshing(false);
@@ -218,6 +220,7 @@ public class HomepageFragmentActivity extends Fragment {
 	}
 	
 	private void initializeLogic() {
+		_removeScollBar(vscroll1);
 		swiperefreshlayout1.setColorSchemeColors(Color.BLUE, Color.YELLOW, Color.RED);
 		textview1.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"fonts/comforta_bold.ttf"), 1);
 		textview2.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"fonts/comforta_bold.ttf"), 1);
@@ -443,6 +446,11 @@ public class HomepageFragmentActivity extends Fragment {
 	}
 	
 	public void drawableclass() {
+	}
+	
+	
+	public void _removeScollBar(final View _view) {
+		_view.setVerticalScrollBarEnabled(false); _view.setHorizontalScrollBarEnabled(false);
 	}
 	
 	public class Recyclerview1Adapter extends RecyclerView.Adapter<Recyclerview1Adapter.ViewHolder> {

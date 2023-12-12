@@ -75,6 +75,32 @@
 					android:textSize="16sp"
 					android:textColor="#FFFFFF" />
 			</LinearLayout>
+			<LinearLayout
+				android:id="@+id/menuNav"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_margin="5dp"
+				android:paddingLeft="15dp"
+				android:paddingTop="10dp"
+				android:paddingRight="15dp"
+				android:paddingBottom="13dp"
+				android:gravity="center_horizontal|center_vertical"
+				android:orientation="horizontal">
+				<ImageView
+					android:id="@+id/imageview3"
+					android:layout_width="25dp"
+					android:layout_height="25dp"
+					android:src="@drawable/menubar"
+					android:scaleType="fitXY" />
+				<TextView
+					android:id="@+id/textview3"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:paddingLeft="8dp"
+					android:text="Menu"
+					android:textSize="16sp"
+					android:textColor="#FFFFFF" />
+			</LinearLayout>
 		</LinearLayout>
 	</LinearLayout>
 </LinearLayout>

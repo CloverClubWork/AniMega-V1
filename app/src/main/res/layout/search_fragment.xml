@@ -9,8 +9,7 @@
 		android:id="@+id/linear1"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:orientation="vertical"
-		android:background="@drawable/main_bg">
+		android:orientation="vertical">
 		<androidx.cardview.widget.CardView
 			android:id="@+id/cardview1"
 			android:layout_width="match_parent"
@@ -32,14 +31,21 @@
 				<EditText
 					android:id="@+id/edittext1"
 					android:layout_width="match_parent"
-					android:layout_height="match_parent"
+					android:layout_height="wrap_content"
 					android:padding="8dp"
 					android:textSize="14sp"
 					android:textColor="#FFFFFF"
 					android:hint="Search Anime"
 					android:textColorHint="#FFFFFF"
 					android:singleLine="true"
+					android:layout_weight="1"
 					android:background="@android:color/transparent" />
+				<ImageView
+					android:id="@+id/clearBtn"
+					android:layout_width="15dp"
+					android:layout_height="15dp"
+					android:src="@drawable/ic_close_white"
+					android:scaleType="fitXY" />
 			</LinearLayout>
 		</androidx.cardview.widget.CardView>
 		<com.github.ybq.android.spinkit.SpinKitView

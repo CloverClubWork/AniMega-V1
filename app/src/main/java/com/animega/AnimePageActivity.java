@@ -184,6 +184,22 @@ public class AnimePageActivity extends AppCompatActivity {
 		requestAnimeInfo = new RequestNetwork(this);
 		requestEpisodes = new RequestNetwork(this);
 		
+		swiperefreshlayout1.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+			@Override
+			public void onRefresh() {
+				loader1.setVisibility(View.VISIBLE);
+				swiperefreshlayout1.setRefreshing(true);
+				if (SketchwareUtil.isConnected(getApplicationContext())) {
+					requestAnimeInfo.startRequestNetwork(RequestNetworkController.GET, getIntent().getStringExtra("path"), "a", _requestAnimeInfo_request_listener);
+					requestEpisodes.startRequestNetwork(RequestNetworkController.GET, getIntent().getStringExtra("episodePath"), "a", _requestEpisodes_request_listener);
+				}
+				else {
+					swiperefreshlayout1.setRefreshing(false);
+					SweetToast.warning(getApplicationContext(), "Please check your internet connection and try again");
+				}
+			}
+		});
+		
 		backBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View _view) {
@@ -421,7 +437,6 @@ public class AnimePageActivity extends AppCompatActivity {
 		cardview1.setCardElevation((float)8);
 		cardview1.setPreventCornerOverlap(false);
 		linear2.setVisibility(View.GONE);
-		loader1.setVisibility(View.VISIBLE);
 		textview_title.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/comforta_bold.ttf"), 1);
 		textview_title2.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/comforta_bold.ttf"), 1);
 		textview1.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/comforta_bold.ttf"), 1);
@@ -442,6 +457,7 @@ public class AnimePageActivity extends AppCompatActivity {
 		textview9.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/comforta_bold.ttf"), 1);
 		recyclerview1.setLayoutManager(new LinearLayoutManager(this));
 		swiperefreshlayout1.setColorSchemeColors(Color.BLUE, Color.YELLOW, Color.RED);
+		loader1.setVisibility(View.VISIBLE);
 		swiperefreshlayout1.setRefreshing(true);
 		if (SketchwareUtil.isConnected(getApplicationContext())) {
 			requestAnimeInfo.startRequestNetwork(RequestNetworkController.GET, getIntent().getStringExtra("path"), "a", _requestAnimeInfo_request_listener);

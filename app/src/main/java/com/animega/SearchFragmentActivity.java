@@ -18,11 +18,13 @@ import android.text.TextWatcher;
 import android.text.style.*;
 import android.util.*;
 import android.view.*;
+import android.view.View;
 import android.view.View.*;
 import android.view.animation.*;
 import android.webkit.*;
 import android.widget.*;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import androidx.annotation.*;
 import androidx.appcompat.app.AppCompatActivity;
@@ -67,6 +69,7 @@ public class SearchFragmentActivity extends Fragment {
 	private RecyclerView recyclerview1;
 	private LinearLayout linear2;
 	private EditText edittext1;
+	private ImageView clearBtn;
 	
 	private RequestNetwork requestData;
 	private RequestNetwork.RequestListener _requestData_request_listener;
@@ -89,6 +92,7 @@ public class SearchFragmentActivity extends Fragment {
 		recyclerview1 = _view.findViewById(R.id.recyclerview1);
 		linear2 = _view.findViewById(R.id.linear2);
 		edittext1 = _view.findViewById(R.id.edittext1);
+		clearBtn = _view.findViewById(R.id.clearBtn);
 		requestData = new RequestNetwork((Activity) getContext());
 		
 		edittext1.addTextChangedListener(new TextWatcher() {
@@ -101,6 +105,7 @@ public class SearchFragmentActivity extends Fragment {
 						resultSearchInput = convertStringInput.replace(" ", "%20");
 					}
 					loader.setVisibility(View.VISIBLE);
+					clearBtn.setVisibility(View.VISIBLE);
 					recyclerview1.setVisibility(View.VISIBLE);
 					if (SketchwareUtil.isConnected(getContext().getApplicationContext())) {
 						requestData.startRequestNetwork(RequestNetworkController.GET, "https://api-amvstrm.nyt92.eu.org/api/v1/search?q=".concat(resultSearchInput), "a", _requestData_request_listener);
@@ -110,6 +115,7 @@ public class SearchFragmentActivity extends Fragment {
 					}
 				}
 				else {
+					clearBtn.setVisibility(View.GONE);
 					loader.setVisibility(View.GONE);
 					recyclerview1.setVisibility(View.GONE);
 				}
@@ -123,6 +129,13 @@ public class SearchFragmentActivity extends Fragment {
 			@Override
 			public void afterTextChanged(Editable _param1) {
 				
+			}
+		});
+		
+		clearBtn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				edittext1.setText("");
 			}
 		});
 		
@@ -156,12 +169,14 @@ public class SearchFragmentActivity extends Fragment {
 	}
 	
 	private void initializeLogic() {
+		_removeScollBar(recyclerview1);
 		cardview1.setCardBackgroundColor(0x80212121);
 		cardview1.setRadius((float)10);
 		cardview1.setCardElevation((float)0);
 		cardview1.setPreventCornerOverlap(false);
 		edittext1.setTypeface(Typeface.createFromAsset(getContext().getAssets(),"fonts/comfortaa_medium.ttf"), 0);
 		recyclerview1.setLayoutManager(new LinearLayoutManager(getContext()));
+		clearBtn.setVisibility(View.GONE);
 		loader.setVisibility(View.GONE);
 	}
 	
@@ -369,6 +384,11 @@ public class SearchFragmentActivity extends Fragment {
 	}
 	
 	public void drawableclass() {
+	}
+	
+	
+	public void _removeScollBar(final View _view) {
+		_view.setVerticalScrollBarEnabled(false); _view.setHorizontalScrollBarEnabled(false);
 	}
 	
 	public class Recyclerview1Adapter extends RecyclerView.Adapter<Recyclerview1Adapter.ViewHolder> {

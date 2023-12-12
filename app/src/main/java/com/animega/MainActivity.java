@@ -49,10 +49,13 @@ public class MainActivity extends AppCompatActivity {
 	private LinearLayout bottomNavigation;
 	private LinearLayout homeNav;
 	private LinearLayout searchNav;
+	private LinearLayout menuNav;
 	private ImageView imageview1;
 	private TextView textview1;
 	private ImageView imageview2;
 	private TextView textview2;
+	private ImageView imageview3;
+	private TextView textview3;
 	
 	private NavigationFragmentsFragmentAdapter navigationFragments;
 	
@@ -70,10 +73,13 @@ public class MainActivity extends AppCompatActivity {
 		bottomNavigation = findViewById(R.id.bottomNavigation);
 		homeNav = findViewById(R.id.homeNav);
 		searchNav = findViewById(R.id.searchNav);
+		menuNav = findViewById(R.id.menuNav);
 		imageview1 = findViewById(R.id.imageview1);
 		textview1 = findViewById(R.id.textview1);
 		imageview2 = findViewById(R.id.imageview2);
 		textview2 = findViewById(R.id.textview2);
+		imageview3 = findViewById(R.id.imageview3);
+		textview3 = findViewById(R.id.textview3);
 		navigationFragments = new NavigationFragmentsFragmentAdapter(getApplicationContext(), getSupportFragmentManager());
 		
 		viewpager1.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -106,16 +112,29 @@ public class MainActivity extends AppCompatActivity {
 				_NavigationBar(1);
 			}
 		});
+		
+		menuNav.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View _view) {
+				_NavigationBar(2);
+			}
+		});
 	}
 	
 	private void initializeLogic() {
 		textview1.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/comforta_bold.ttf"), 1);
 		textview2.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/comforta_bold.ttf"), 1);
+		textview3.setTypeface(Typeface.createFromAsset(getAssets(),"fonts/comforta_bold.ttf"), 1);
+		textview1.setVisibility(View.VISIBLE);
+		textview2.setVisibility(View.GONE);
+		textview3.setVisibility(View.GONE);
 		homeNav.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFF1A237E));
 		imageview1.setColorFilter(0xFFFFFFFF, PorterDuff.Mode.SRC_ATOP);
 		searchNav.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, Color.TRANSPARENT));
 		imageview2.setColorFilter(0xFFFFFFFF, PorterDuff.Mode.SRC_ATOP);
-		navigationFragments.setTabCount(2);
+		menuNav.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, Color.TRANSPARENT));
+		imageview3.setColorFilter(0xFFFFFFFF, PorterDuff.Mode.SRC_ATOP);
+		navigationFragments.setTabCount(3);
 		viewpager1.setAdapter(navigationFragments);
 		viewpager1.setCurrentItem((int)0);
 	}
@@ -154,28 +173,53 @@ public class MainActivity extends AppCompatActivity {
 			if (_position == 1) {
 				return new SearchFragmentActivity();
 			}
+			if (_position == 2) {
+				return new MenuFragmentActivity();
+			}
 			return null;
 		}
 	}
 	
+	@Override
+	public void onBackPressed() {
+		finishAffinity();
+	}
 	public void _NavigationBar(final double _position) {
 		if (_position == 0) {
 			textview1.setVisibility(View.VISIBLE);
 			textview2.setVisibility(View.GONE);
+			textview3.setVisibility(View.GONE);
 			homeNav.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFF1A237E));
 			imageview1.setColorFilter(0xFFFFFFFF, PorterDuff.Mode.SRC_ATOP);
 			searchNav.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, Color.TRANSPARENT));
 			imageview2.setColorFilter(0xFFFFFFFF, PorterDuff.Mode.SRC_ATOP);
+			menuNav.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, Color.TRANSPARENT));
+			imageview3.setColorFilter(0xFFFFFFFF, PorterDuff.Mode.SRC_ATOP);
 			viewpager1.setCurrentItem((int)0);
 		}
 		if (_position == 1) {
 			textview1.setVisibility(View.GONE);
 			textview2.setVisibility(View.VISIBLE);
+			textview3.setVisibility(View.GONE);
 			homeNav.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, Color.TRANSPARENT));
 			imageview1.setColorFilter(0xFFFFFFFF, PorterDuff.Mode.SRC_ATOP);
 			searchNav.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFF1A237E));
 			imageview2.setColorFilter(0xFFFFFFFF, PorterDuff.Mode.SRC_ATOP);
+			menuNav.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, Color.TRANSPARENT));
+			imageview3.setColorFilter(0xFFFFFFFF, PorterDuff.Mode.SRC_ATOP);
 			viewpager1.setCurrentItem((int)1);
+		}
+		if (_position == 2) {
+			textview1.setVisibility(View.GONE);
+			textview2.setVisibility(View.GONE);
+			textview3.setVisibility(View.VISIBLE);
+			homeNav.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, Color.TRANSPARENT));
+			imageview1.setColorFilter(0xFFFFFFFF, PorterDuff.Mode.SRC_ATOP);
+			searchNav.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, Color.TRANSPARENT));
+			imageview2.setColorFilter(0xFFFFFFFF, PorterDuff.Mode.SRC_ATOP);
+			menuNav.setBackground(new GradientDrawable() { public GradientDrawable getIns(int a, int b) { this.setCornerRadius(a); this.setColor(b); return this; } }.getIns((int)50, 0xFF1A237E));
+			imageview3.setColorFilter(0xFFFFFFFF, PorterDuff.Mode.SRC_ATOP);
+			viewpager1.setCurrentItem((int)2);
 		}
 	}
 	
